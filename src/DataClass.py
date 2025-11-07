@@ -1,5 +1,9 @@
 import dataclasses
 import pandas as pd
 
-# @dataclasses.dataclass
-# class DataClass:
+@dataclasses.dataclass
+class AnnualStudentData:
+    df: pd.DataFrame
+    subjects: list
+
+
