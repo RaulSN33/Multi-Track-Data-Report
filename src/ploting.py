@@ -1,8 +1,8 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-from src.DataClass import AnnualStudentData
+from src.DataClass import ByTermStudentData
 
-def histograms(data: AnnualStudentData, file_to_plot):
+def histograms(data: ByTermStudentData, file_to_plot):
     df = data[file_to_plot].df.copy()
     # a = pd.pivot(
     #     data=data.data,
