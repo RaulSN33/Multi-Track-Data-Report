@@ -1,5 +1,7 @@
+import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from numpy import histogram_bin_edges
 from src.DataClass import ByTermStudentData
 from src.helpers import tracks
@@ -92,5 +94,37 @@ def pct_passed_pie(
         ax.set_title(track)
 
     sns.despine()
+    plt.tight_layout()
+    plt.show()
+
+
+def by_subject_boxplot(
+        df_to_plot: pd.DataFrame,
+        subject: str,
+        term: str,
+        year: str,
+):
+# b = data['2027-2028']['Spring'].df
+    df_to_plot['IncomeStudent'] = df_to_plot['IncomeStudent'].replace({0:'Local', 1:'Foreigner'})
+
+    fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 7), sharey=True)
+    sns.boxplot(
+        data = df_to_plot,
+        x='Track',
+        y=subject,
+        color = 'green',
+        ax = axes[0]
+
+    )
+    sns.boxplot(
+        data = df_to_plot,
+        x = 'Track',
+        y=subject,
+        hue='IncomeStudent',
+        ax = axes[1]
+
+    )
+    sns.despine()
+    fig.suptitle(f'{year}, {term}; {subject} Scores')
     plt.tight_layout()
     plt.show()

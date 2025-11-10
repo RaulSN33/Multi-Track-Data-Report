@@ -1,19 +1,25 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 from src.DataLoader import DataLoader
-from src.DataWrangling import (
+from src.calculations import (
     avg_by_track_income,
     pass_vs_fail_analytics,
     total_number_students,
     average_calculation,
     formula_loop_filler,
     correlation_calc
-
 )
 
 from src.helpers import (
-    terms
+    terms,
+    subjects,
+    terms_mapping_dict
 )
 from src.ploting import (
-    average_grades
+    average_grades,
+    by_subject_boxplot,
+    pct_passed_pie
 )
 
 route = 'Input'
@@ -30,20 +36,6 @@ available_years = loader.available_years
 
 described_fall = data['2027-2028']['Fall'].df.describe()
 described_spring = data['2027-2028']['Spring'].df.describe()
-
-#%%
-
-
-
-
-
-#%%
-
-
-
-
-
-#%%
 
 
 
@@ -92,37 +84,20 @@ Visualize distributions of History grades for each track using histograms or box
 Compare average Mathematics scores between tracks 
 Analyze correlations between attendance and project scores per track 
 """
-summary_avg1, summary_avg2 = avg_by_track_income(data, '2027-2028')
 
-# histograms(
-#     data,
-#     '2027-2028',
-#     terms=terms
-# )
-average_grades(
-    groupby_summaries=summary_avg1['Math'].to_frame(),
-    plot_title = 'Fall Term; Average grades by track'
 
+pass_fail_dict_results = pass_vs_fail_analytics(
+    data,
+    year='2027-2028',
+    term='Fall'
 )
 
-average_grades(
-    groupby_summaries=summary_avg2['Math'].to_frame(),
-    plot_title = 'Spring Term; Average grades by track'
 
-)
-
-# pass_fail_dict_results = pass_vs_fail_analytics(
-#     data,
-#     year='2027-2028',
-#     # terms='Fall'
-# )
-
-
-# for _, term in terms_mapping_dict.items():
-#     pct_passed_pie(
-#         pass_fail_dict_results[term],
-#         data['2027-2028'][term].df
-#     )
+for _, term in terms_mapping_dict.items():
+    pct_passed_pie(
+        pass_fail_dict_results[term],
+        data['2027-2028'][term].df
+    )
 
 corr = formula_loop_filler(
     data,
@@ -132,9 +107,6 @@ corr = formula_loop_filler(
 
 )
 #%%
-
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 a = data['2027-2028']['Spring'].df[
     [
@@ -161,15 +133,15 @@ sns.pairplot(
 )
 plt.show()
 #%%
-b = data['2027-2028']['Spring'].df
-sns.boxplot(
-    data = b,
-    x = 'Track',
-    y='ProjectScore',
-    hue='IncomeStudent',
-)
-sns.despine()
-plt.show()
+
+for term in terms:
+    for subject in subjects:
+        by_subject_boxplot(
+            data['2027-2028'][term].df,
+            subject,
+            year = ['2027-2028'],
+            term = term
+        )
 
 #%%
 
@@ -180,7 +152,24 @@ Compare academic performance of income-supported students (IncomeStudent = True)
 against others
 """
 
+summary_avg1, summary_avg2 = avg_by_track_income(data, '2027-2028')
 
+# histograms(
+#     data,
+#     '2027-2028',
+#     terms=terms
+# )
+average_grades(
+    groupby_summaries=summary_avg1['Math'].to_frame(),
+    plot_title = 'Fall Term; Average grades by track'
+
+)
+
+average_grades(
+    groupby_summaries=summary_avg2['Math'].to_frame(),
+    plot_title = 'Spring Term; Average grades by track'
+
+)
 #
 average_grades(
     groupby_summaries=summary_avg1,
