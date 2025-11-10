@@ -50,3 +50,5 @@ class DataLoader():
                 data_dict[school_year] = annual_data
 
         self.data = data_dict
+        self.available_years = self.data.keys()
+

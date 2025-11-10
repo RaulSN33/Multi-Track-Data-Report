@@ -29,3 +29,14 @@ terms_mapping_dict = {
     1:'Fall',
     2:'Spring'
 }
+terms = ['Fall', 'Spring']
+
+columns_to_compute_average = subjects+[
+        'ProjectScore',
+        'Attendance (%)'
+    ]
+columns_to_compute_corr = subjects+[
+        'ProjectScore',
+        'Attendance (%)'
+    ]
+
