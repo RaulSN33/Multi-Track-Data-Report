@@ -7,19 +7,6 @@ from src.helpers import (
 )
 
 
-def avg_by_track_income(
-        data: ByTermStudentData,
-        year: str
-):
-    first_term = data[year]['Fall'].df
-    second_term = data[year]['Spring'].df
-
-    summary_avg1 = first_term[subjects+['Track', 'IncomeStudent']].groupby(['Track','IncomeStudent']).mean()
-    summary_avg2 = second_term[subjects+['Track', 'IncomeStudent']].groupby(['Track','IncomeStudent']).mean()
-
-    return summary_avg1, summary_avg2
-
-
 def pass_vs_fail_analytics(
         data: ByTermStudentData,
         year: str,
@@ -67,7 +54,7 @@ def pass_rates_normalizer(
 )-> pd.DataFrame:
     pass_rates_df.set_index(cols_set_index, inplace=True)
     pass_rates_pct = pass_rates_df['Y'] / (pass_rates_df['Y'] + pass_rates_df['N'])
-    pass_rates_pct.index = pass_rates_df.index
+    # pass_rates_pct.index = pass_rates_df.index
 
     return pass_rates_pct
 
@@ -79,7 +66,12 @@ def total_number_students(
 )-> pd.DataFrame:
 
     df = data[year][term].df
-    grouped_by = df.groupby(['Track', 'IncomeStudent']).count()
+    grouped_by = df.groupby(
+        [
+            'Track',
+            # 'IncomeStudent'
+        ]
+    ).count()
 
     return grouped_by['StudentID']
 
@@ -88,14 +80,24 @@ def average_calculation(
         data: ByTermStudentData,
         year: str,
         term: str,
-        columns_to_compute_average: list = columns_to_compute_average
+        columns_to_compute_average: list = subjects
 )-> pd.DataFrame:
 
     df = data[year][term].df
     grouped_by = df[columns_to_compute_average+['Track']].groupby(['Track']).mean()
 
+
     return grouped_by
 
+def avg_by_track_income(
+        data: ByTermStudentData,
+        year: str,
+        term: str,
+):
+    first_term = data[year][term].df
+    summary_avg1 = first_term[subjects+['Track', 'IncomeStudent']].groupby(['Track','IncomeStudent']).mean()
+
+    return summary_avg1
 
 def formula_loop_filler(
         data: ByTermStudentData,
@@ -117,6 +119,7 @@ def formula_loop_filler(
     return ts_data
 
 
+
 def correlation_calc(
         data: ByTermStudentData,
         year: str,
@@ -126,5 +129,7 @@ def correlation_calc(
     # cols_list =
     df = data[year][term].df
     corr_df = df[columns_to_compute_corr+['Track']].groupby(['Track']).corr()
+    # corr_df = corr_df[]
+
 
     return corr_df

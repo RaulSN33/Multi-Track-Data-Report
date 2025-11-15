@@ -9,8 +9,8 @@ from src.helpers import tracks
 
 def histograms(
         data: ByTermStudentData,
-        year_to_plot,
-        terms,
+        year_to_plot: str,
+        terms: str,
         tracks=tracks
 ):
     yearly_info = data[year_to_plot]
@@ -42,10 +42,11 @@ def histograms(
     axes[0].legend()
     plt.tight_layout()
     plt.show()
+    return fig
 
 def average_grades(
-        groupby_summaries,
-        plot_title
+        groupby_summaries: pd.DataFrame,
+        plot_title: str
 ):
 
     df_to_plot = groupby_summaries.T
@@ -66,14 +67,16 @@ def average_grades(
     sns.despine()
     plt.tight_layout()
     plt.show()
+    return fig
 
 def pct_passed_pie(
         pass_fail_info,
         term_info,
+        title
 ):
     tracks = pass_fail_info['Track'].unique()
     fig, axes = plt.subplots(1, len(tracks), figsize=(13, 5))
-    fig.suptitle('Pass vs Fail Distribution by Track', fontsize=16, fontweight='bold')
+    fig.suptitle(title, fontsize=16, fontweight='bold')
 
     # Step 4: Plot pie chart for each track
     for i, track in enumerate(tracks):
@@ -96,6 +99,7 @@ def pct_passed_pie(
     sns.despine()
     plt.tight_layout()
     plt.show()
+    return fig
 
 
 def by_subject_boxplot(
@@ -124,7 +128,10 @@ def by_subject_boxplot(
         ax = axes[1]
 
     )
+    axes[1].legend(loc='lower left')
     sns.despine()
     fig.suptitle(f'{year}, {term}; {subject} Scores')
     plt.tight_layout()
     plt.show()
+
+    return fig
