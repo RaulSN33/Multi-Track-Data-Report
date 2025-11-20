@@ -89,6 +89,18 @@ def average_calculation(
 
     return grouped_by
 
+def subject_avg(
+        data: ByTermStudentData,
+        year: str,
+        term: str,
+)-> pd.DataFrame:
+
+    df = data[year][term].df
+    grouped_by = df[subjects].mean()
+
+
+    return grouped_by
+
 def avg_by_track_income(
         data: ByTermStudentData,
         year: str,

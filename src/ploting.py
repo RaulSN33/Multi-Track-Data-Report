@@ -58,7 +58,7 @@ def average_grades(
     fig.suptitle(plot_title, fontweight = 'bold')
 
     for i, track in enumerate(tracks):
-        df_to_plot[track].plot.bar(ax=axes[i])
+        df_to_plot[track].plot.bar(ax=axes[i], alpha = .75)
         axes[i].grid(axis='y')
         axes[i].set_title(track)
         axes[i].tick_params(axis='x', labelrotation=0)
