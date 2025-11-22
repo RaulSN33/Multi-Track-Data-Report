@@ -17,7 +17,6 @@ class DataLoader():
     ):
         self.route = route
         self.files = listdir(self.route)
-        # self.get_data()
 
     def get_data(
             self
