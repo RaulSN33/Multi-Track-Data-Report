@@ -17,6 +17,7 @@ def one_year_excel_report(
     math_plots,
     average_scores_by_income_plots,
     average_scores_by_income,
+    output_report_route
 ):
     wb = xw.Book()
     app = xw.apps.active
@@ -186,5 +187,5 @@ def one_year_excel_report(
     sheet1['W47'].value = average_scores_by_income['Fall']
     sheet1['W65'].value = average_scores_by_income['Spring']
 
-    wb.save(f'Output/{YEAR}_summary_report.xlsx')
+    wb.save(f'{output_report_route}/{YEAR}_summary_report.xlsx')
 

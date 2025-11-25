@@ -13,10 +13,12 @@ from src.helpers import subjects, replace_values_mapping_dict
 class DataLoader():
     def __init__(
             self,
-            route: str
+            route: str,
+            output_data_route: str
     ):
         self.route = route
         self.files = listdir(self.route)
+        self.output_data_route = output_data_route
 
     def get_data(
             self
@@ -42,7 +44,8 @@ class DataLoader():
                     )
 
                 df = dtype_transformation(df, subjects)
-
+                df.to_csv(f'{self.output_data_route}/consolidated_data_{school_year}.csv')
+                print(f'Saved consolidated data at: {self.output_data_route}/consolidated_data_{school_year}.csv')
                 annual_data = term_data_filler(
                     df
                 )

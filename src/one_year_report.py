@@ -30,7 +30,8 @@ from src.xlsx_report import (
 def one_year_report(
         data: DataLoader,
         available_years,
-        YEAR
+        YEAR,
+        output_report_route,
 ):
     """
     2. Track-Level Summary Statistics
@@ -200,7 +201,6 @@ def one_year_report(
 
         )
 
-
     """
     5. Final Report Generation 
     Export a summary report as a CSV or Excel file encompassing all computed statistics 
@@ -223,6 +223,7 @@ def one_year_report(
         fig_pairplot,
         math_plots,
         average_scores_by_income_plots,
-        average_scores_by_income
+        average_scores_by_income,
+        output_report_route
     )
 

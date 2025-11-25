@@ -1,9 +1,16 @@
 from src.DataLoader import DataLoader
 from src.one_year_report import one_year_report
+from src.multiyear_report import multiyear_report
 
-def report_initiator():
-    route = 'Input'
-    loader = DataLoader(route)
+def report_initiator(
+        input_route,
+        output_data_route,
+        output_report_route,
+):
+    loader = DataLoader(
+        input_route,
+        output_data_route
+    )
     loader.get_data()
 
     data = loader.data
@@ -43,11 +50,16 @@ def report_initiator():
         one_year_report(
             data=data,
             available_years=available_years,
-            YEAR=year_to_use
+            YEAR=year_to_use,
+            # output_data_route=output_data_route,
+            output_report_route=output_report_route
         )
-        print(f"Single-year report saved in Output/{year_to_use}_summary_report.xlsx")
+        print(f"Single-year report saved in {output_data_route}/{year_to_use}_summary_report.xlsx")
 
     elif choice in {"multi_year"}:
-        print("We're still working on this option, please come back later!")
+        multiyear_report(
+        data = data,
+        available_years = available_years,
+    )
     else:
         print("No valid option selected, please try again.")
