@@ -7,60 +7,63 @@ The tool is fully command-line–driven: the user selects the academic year, and
 
 ### Features: 
 
-Data Loading 
-Automatically reads student datasets for a selected academic year.
+Data Loading: Automatically reads student datasets for a selected academic year.
 
-Data Wrangling & Cleaning
-Handles preprocessing, restructuring, aggregations, and validation.
+Data Wrangling & Cleaning :Handles preprocessing, restructuring, aggregations, and validation.
 
-Automatic Calculations
-Computes metrics such as:
+#### Automatic Calculations:
 
-Attendance statistics
+- Attendance statistics 
+- Subject-level summaries
+- Track-based comparisons
+- One-year consolidated indicators
 
-Subject-level summaries
+#### Plot Generation:
 
-Track-based comparisons
+- Creates visuals to support the report (bar charts, distributions, comparisons, etc.).
 
-One-year consolidated indicators
-
-Plot Generation
-Creates visuals to support the report (bar charts, distributions, comparisons, etc.).
-
-Excel Report Generation
-Produces a structured Excel report with:
+#### Excel Report Generation
+- Produces a structured Excel report with:
 
 
-Summary pages
+## Summary pages
 
 ### Interactive CLI
 The program runs in the terminal and prompts the user to choose which year to generate a report for.
 
 ### Project Structure
-Multi-Track-Data-Report/
-│
-├── __main__.py               # CLI entry point
-├── consolidated_data.csv     # Example consolidated dataset
-├── Multi_Track_Data_Report_Project.pdf  # Project specification
-├── LICENSE
-├── README.md
-│
-└── src/
-    ├── DataLoader.py         # Loading yearly datasets
-    ├── DataWrangling.py      # Transformations, cleaning, reshaping
-    ├── DataClass.py          # Defines student/year/track data structures
-    ├── calculations.py       # Core calculations for metrics
-    ├── helpers.py            # Utility functions shared across modules
-    ├── ploting.py            # Plot creation (matplotlib)
-    ├── one_year_report.py    # Logic for full-year report assembly
-    ├── xlsx_report.py        # Excel writer / formatting
-    ├── report_initiator.py   # Orchestrates data → analysis → report
-    └── old_xlsxreport.py     # Legacy version (kept for reference)
 
+``` bash
+Multi-Track-Data-Report/
+├── .gitignore
+├── LICENSE
+├── Multi_Track_Data_Report_Project.pdf
+├── README.md
+├── workflow_debbuger.py
+├── __main__.py
+├── Input/
+│   ├── student_grades_2027-2028.xlsx
+│   └── student_grades_2028-2029.xlsx #Generated file to use it for another year
+├── Output/ # where output data and reports will be stored!
+│   ├── ConsolidatedData/
+│   │   ├── .gitkeep
+│   └── SummaryReports/
+│       ├── .gitkeep
+└── src/
+    ├── calculations.py
+    ├── DataClass.py
+    ├── DataLoader.py
+    ├── DataWrangling.py
+    ├── helpers.py
+    ├── multiyear_report.py
+    ├── one_year_report.py
+    ├── ploting.py
+    ├── report_initiator.py
+    ├── xlsx_report.py
+    └── __init__.py
+```
 ### How to Use
 1. Install Requirements
-
-(If you have a requirements.txt, include it. If not, list your dependencies later.)
 
 pip install -r requirements.txt
 
@@ -74,34 +77,23 @@ python __main__.py
 The system will display a prompt in the terminal asking you to choose the academic year.
 After selection, the program will:
 
-Load the corresponding dataset
-
-Process and analyze the data
-
-Generate plots
-
-Produce a final Excel report in the output folder
+- Load the corresponding dataset
+- Process and analyze the data
+- Generate plots
+- Produce a final Excel report in the output folder
 
 ### Workflow Overview
 
-User selects a year
-via CLI.
+1. User selects a year via CLI.
 
-DataLoader retrieves the correct year’s dataset.
-
-DataWrangling and calculations clean the data and compute metrics.
-
-ploting.py creates visuals (matplotlib).
-
-xlsx_report.py composes the final Excel report:
-
-Multiple sheets
-
-Embedded plots
-
-Summary tables
-
-Report is delivered to the administrative staff for academic analysis and decision-making.
+2. DataLoader retrieves the correct year’s dataset.
+3. DataLoader Saves the cleaned and aggregated Dataset
+4. DataWrangling and calculations clean the data and compute metrics.
+5. ploting.py creates visuals (matplotlib).
+6. xlsx_report.py composes the final Excel report:
+   - Embedded plots
+   - Summary tables 
+   - Report is delivered to the administrative staff for academic analysis and decision-making.
 
 ### Intended Audience
 
@@ -109,15 +101,12 @@ This tool is designed for university administrative staff who need clear, accura
 
 ### Technologies Used
 
-Python
-
-pandas
-
-numpy
-
-matplotlib
-
-openpyxl / xlsxwriter (depending on your implementation)
+- Python:
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - xlwings
 
 ###  License
 
