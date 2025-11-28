@@ -1,5 +1,8 @@
 .idea
 consolidated_data.csv
 src/old_xlsxreport.py
-/Output
+/Output/ConsolidatedData/**.xslx
+/Output/ConsolidatedData/**.csv
+/Output/SummaryReports/**.xlsx
+/Output/SummaryReports/**.csv
 **.pyc
