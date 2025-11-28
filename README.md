@@ -99,7 +99,7 @@ pip install -r requirements.txt
 
 From the project root:
 
-python __main__.py
+ ```__main__.py```
 
 
 The system will display a prompt in the terminal asking you to choose the academic year.
