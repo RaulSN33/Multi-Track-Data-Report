@@ -3,7 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib import pyplot as plt
 from numpy import histogram_bin_edges
-from src.DataClass import ByTermStudentData
+from src.dataclass import ByTermStudentData
 from src.helpers import tracks
 
 
@@ -78,7 +78,6 @@ def pct_passed_pie(
     fig, axes = plt.subplots(1, len(tracks), figsize=(13, 5))
     fig.suptitle(title, fontsize=16, fontweight='bold')
 
-    # Step 4: Plot pie chart for each track
     for i, track in enumerate(tracks):
         ax = axes[i]
         track_data = (

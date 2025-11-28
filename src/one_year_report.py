@@ -2,7 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from src.DataLoader import DataLoader
+from src.dataloader import DataLoader
 from src.calculations import (
     avg_by_track_income,
     pass_vs_fail_analytics,

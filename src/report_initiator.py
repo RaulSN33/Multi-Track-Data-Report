@@ -1,4 +1,4 @@
-from src.DataLoader import DataLoader
+from src.dataloader import DataLoader
 from src.one_year_report import one_year_report
 from src.multiyear_report import multiyear_report
 
@@ -51,7 +51,6 @@ def report_initiator(
             data=data,
             available_years=available_years,
             YEAR=year_to_use,
-            # output_data_route=output_data_route,
             output_report_route=output_report_route
         )
         print(f"Single-year report saved in {output_data_route}/{year_to_use}_summary_report.xlsx")

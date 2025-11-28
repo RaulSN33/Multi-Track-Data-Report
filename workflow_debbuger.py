@@ -1,4 +1,4 @@
-from src.DataLoader import DataLoader
+from src.dataloader import DataLoader
 from src.one_year_report import one_year_report
 from src.multiyear_report import multiyear_report
 

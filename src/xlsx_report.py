@@ -133,9 +133,6 @@ def one_year_excel_report(
     math_scores_spring.width = 350
     math_scores_spring.height = 250
     ##########
-
-    ##########
-
     ##########
     sheet1['B46'].value = '4.1 Passing Rates by track'
     sheet1['B46'].api.Font.Bold = True
@@ -184,8 +181,13 @@ def one_year_excel_report(
     avg_scores_spring.width = 350
     avg_scores_spring.height = 250
 
-    sheet1['W47'].value = average_scores_by_income['Fall']
-    sheet1['W65'].value = average_scores_by_income['Spring']
+    sheet1['W47'].value = '4.2 Fall Grades'
+    sheet1['W47'].api.Font.Bold = True
+    sheet1['W48'].value = average_scores_by_income['Fall']
+
+    sheet1['W66'].value = '4.2 Spring Grades'
+    sheet1['W66'].api.Font.Bold = True
+    sheet1['W66'].value = average_scores_by_income['Spring']
 
     wb.save(f'{output_report_route}/{YEAR}_summary_report.xlsx')
 

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.DataClass import ByTermStudentData
+from src.dataclass import ByTermStudentData
 from src.helpers import (
     subjects,
     columns_to_compute_average
